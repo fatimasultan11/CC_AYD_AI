@@ -15,3 +15,5 @@ media/
 .vscode/
 .idea/
 *.sublime-workspace
+data/
+sampleDeepGramData.json

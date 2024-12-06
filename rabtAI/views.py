@@ -10,14 +10,6 @@ from dotenv import load_dotenv
 import plotly.express as px
 import pandas as pd
 import whisper
-
-# from deepgram import (
-#     DeepgramClient,
-#     PrerecordedOptions,
-#     DeepgramClientOptions,
-#     FileSource,
-# )
-import httpx
 load_dotenv()
 
 # Path to the audio file
@@ -287,64 +279,7 @@ def get_response(filename):
     #return JsonResponse(data)
     #return JsonResponse(result)
     return result
-# def index22(request):
-#     print('request\n',request)
-#     #result = get_response(filename="data/out-03329037737-1006-20240708-164521-1720439121.23153.wav.json")
-#     #return JsonResponse(result)
-#     # url = request.GET.get('url', '')   
-#     # print('\nurl\n',url) 
-#     # filename = download_audio_file(url=url)
-#     filename = "data/out-03329037737-1006-20240708-164521-1720439121.23153.wav"
-#     # filename = "data/in-4238020121-03153721111-20240627-114232-1719470552.16797.wav"
-#     try:
-#         deepgram = DeepgramClient(api_key=API_KEY)
-#         with open(filename, "rb") as file:
-#             buffer_data = file.read()
 
-#         payload: FileSource = {
-#             "buffer": buffer_data,
-#         }
-
-#         #STEP 2: Configure Deepgram options for audio analysis
-#         options = PrerecordedOptions(
-#             #model="nova-2",
-#             # model="whisper-large",
-#             model="whisper-large",
-#             smart_format=True,
-#             detect_topics=True,
-#             #detect_entities=True,
-#             diarize=True,
-#             intents=True,
-#             sentiment=True,
-#             punctuate=False,
-#             summarize=True,
-#             topics=True,
-#             #language="hi"
-#         )
-
-#         # STEP 3: Call the transcribe_file method with the text payload and options
-#         response = deepgram.listen.prerecorded.v("1").transcribe_file(payload, options, timeout=httpx.Timeout(timeout=None))
-#         #response = deepgram.listen.prerecorded.v("1").transcribe_url(AUDIO_URL, options)
-
-#         with open(filename + '.json', 'w', encoding='utf-8') as f:
-#             json.dump(response.to_json(), f, ensure_ascii=False)
-#         #response = get_response(response)
-#         # STEP 4: Print the response
-#         #print(response)
-#         #return HttpResponse(response)
-#         result = get_response(filename=filename + '.json')
-#         result['call_id'] = request.GET.get('call_id', '')
-#         result['agent_id'] = request.GET.get('agent_id', '')
-#         result['call_direction'] = request.GET.get('call_direction', '')
-#         return JsonResponse(result)
-#     except Exception as e:
-#         print(f"Exception: {e}")
-#         return HttpResponse(e)
-#     #return HttpResponse("Hello, world. You're at the rabtAI index.")
-    
-import whisper
-from django.http import HttpResponse
-import os
 
 def index(request):
     # Assuming the file is uploaded via a request or exists in the "data" directory
@@ -365,7 +300,7 @@ def index(request):
 
     except Exception as e:
         # Handle exceptions and return the error in the response
-        return HttpResponse(f"Exception occurred--: {e,'--',os.path.exists(filename)}", status=500,)
+        return HttpResponse(f"Exception occurred--: {e}", status=500,)
 
 #  file def index(request): 
 def file_index(request):
@@ -398,6 +333,6 @@ def preprocess_audio(input_file, output_file):
         print(f"Error during audio preprocessing: {e}")
 
 # # Example usage:
-# input_audio = "input_audio.mp3"
-# output_audio = "preprocessed_audio.wav"
+# input_audio = "data/out-03329037737-1006-20240708-164521-1720439121.23153.wav"
+# output_audio = "data/out-03329037737-1006-20240708-164521-1720439121.23153-preprocessed_audio.wav"
 # preprocess_audio(input_audio, output_audio)
