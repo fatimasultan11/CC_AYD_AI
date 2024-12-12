@@ -17,3 +17,5 @@ media/
 *.sublime-workspace
 data/
 sampleDeepGramData.json
+.env
+*.ipynb
